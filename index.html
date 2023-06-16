@@ -116,14 +116,23 @@
 							
 							                    canvas.height = viewport.height;
 							                    canvas.width = viewport.width;
-							
-							                    page.render({
+
+									    const pdfPage = document.createElement('div');
+							                    pdfPage.classList.add('pdf-page');
+							                    pdfPage.appendChild(canvas);
+									    page.render({
+							                        canvasContext: ctx,
+							                        viewport: viewport
+							                    }).promise.then(function () {
+							                        pdfContents.appendChild(pdfPage);
+							                    });
+							                    <!-- page.render({
 							                        canvasContext: ctx,
 							                        viewport: viewport,
 							                        ...renderOptions,
 							                    }).promise.then(function () {
 							                        pdfContents.appendChild(canvas);
-							                    });
+							                    }); -->
 							                });
 							            };
 							
