@@ -79,7 +79,7 @@
 							</article>
 
 						<!-- CV -->
-							<article id="cv">
+							<!--<article id="cv">
 								<h2 class="major">Curriculum vitae</h2>
 								<p><iframe src="https://docs.google.com/viewer?url=https://github.com/abrarfaiyaz/cv/tree/main/assets/files/resume.pdf&embedded=true" width="100%" style="min-height: 100vh;" scrolling="yes"></iframe></p>
 								<!--<div class="pdf-container" style="max-width: 100%; background-color: white; overflow: auto;" height="700">
@@ -89,6 +89,45 @@
 									<iframe src="assets/files/resume.pdf" width="100%" > </iframe>
 								</div>-->
 								
+							</article>-->
+						<article id="cv">
+							    <h2 class="major">Curriculum vitae!</h2>
+							    <div id="pdf-container">
+							        <div id="pdf-loader">Loading PDF...</div>
+							        <div id="pdf-contents"></div>
+							    </div>
+							    <script src="pdf-viewer/build/pdf.js"></script>
+							    <script>
+							        const pdfContainer = document.getElementById('pdf-container');
+							        const pdfLoader = document.getElementById('pdf-loader');
+							        const pdfContents = document.getElementById('pdf-contents');
+							        const pdfURL = 'pdf-viewer/resume.pdf'; // Update the path to your PDF file
+							
+							        pdfLoader.style.display = 'block';
+							
+							        // Load and render the PDF
+							        pdfjsLib.getDocument(pdfURL).promise.then(function (pdfDoc) {
+							            pdfLoader.style.display = 'none';
+							
+							            for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
+							                pdfDoc.getPage(pageNum).then(function (page) {
+							                    const canvas = document.createElement('canvas');
+							                    const ctx = canvas.getContext('2d');
+							                    const viewport = page.getViewport({ scale: 1 });
+							
+							                    canvas.height = viewport.height;
+							                    canvas.width = viewport.width;
+							
+							                    page.render({
+							                        canvasContext: ctx,
+							                        viewport: viewport
+							                    }).promise.then(function () {
+							                        pdfContents.appendChild(canvas);
+							                    });
+							                });
+							            }
+							        });
+							    </script>
 							</article>
 
 						<!-- AWARDS -->
