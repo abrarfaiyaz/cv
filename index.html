@@ -81,9 +81,8 @@
 						<!-- CV -->
 							
 						<article id="cv">
-							
-							    <h2 class="major">Curriculum vitae!</h2>
-							    <div id="pdf-container" style="width: 100%; overflow: auto;">
+							    <h2 class="major">Curriculum vitae</h2>
+							    <div id="pdf-container">
 							        <div id="pdf-loader">Loading PDF...</div>
 							        <div id="pdf-contents"></div>
 							    </div>
@@ -100,26 +99,42 @@
 							        pdfjsLib.getDocument(pdfURL).promise.then(function (pdfDoc) {
 							            pdfLoader.style.display = 'none';
 							
-							            for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
+							            const renderOptions = {
+							                // Adjust the rendering options as needed
+							                imageSmoothingEnabled: true,
+							                renderInteractiveForms: true,
+							                progressiveRendering: true,
+							                background: 'rgba(0,0,0,0)',
+							            };
+							
+							            const renderPage = function (pageNum) {
 							                pdfDoc.getPage(pageNum).then(function (page) {
 							                    const canvas = document.createElement('canvas');
 							                    const ctx = canvas.getContext('2d');
-							                    const viewport = page.getViewport({ scale: 1 });
+							                    const scale = 2; // Increase the scale factor for better quality
+							                    const viewport = page.getViewport({ scale });
 							
 							                    canvas.height = viewport.height;
 							                    canvas.width = viewport.width;
 							
 							                    page.render({
 							                        canvasContext: ctx,
-							                        viewport: viewport
+							                        viewport: viewport,
+							                        ...renderOptions,
 							                    }).promise.then(function () {
 							                        pdfContents.appendChild(canvas);
 							                    });
 							                });
+							            };
+							
+							            // Render each page of the PDF
+							            for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
+							                renderPage(pageNum);
 							            }
 							        });
 							    </script>
 							</article>
+
 
 						<!-- AWARDS -->
 							<article id="awards">
