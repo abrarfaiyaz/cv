@@ -82,7 +82,7 @@
 							
 						<article id="cv" max-width="100%">
 							    <h2 class="major">Curriculum vitae</h2>
-							    <div id="pdf-container" max-width="100%" style="justify-content: center; overflow: auto; background-color: white;">
+							    <div id="pdf-container" width="100%" style="justify-content: center; background-color: white;">
 							        <div id="pdf-loader">Loading PDF...</div>
 							        <div id="pdf-contents"></div>
 							    </div>
@@ -111,11 +111,11 @@
 							                pdfDoc.getPage(pageNum).then(function (page) {
 							                    const canvas = document.createElement('canvas');
 							                    const ctx = canvas.getContext('2d');
-							                    const scale = 0.5; // Increase the scale factor for better quality
+							                    const scale = 0.8; // Increase the scale factor for better quality
 							                    const viewport = page.getViewport({ scale });
 							
 							                    canvas.height = viewport.height;
-							                    canvas.width = viewport.weight;
+							                    canvas.width = viewport.width;
 							
 							                    page.render({
 							                        canvasContext: ctx,
