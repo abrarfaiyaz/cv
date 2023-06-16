@@ -114,8 +114,8 @@
 							                    const scale = 1; // Increase the scale factor for better quality
 							                    const viewport = page.getViewport({ scale });
 							
-							                    canvas.height = viewport.height;
-							                    canvas.width = pdfContainer.clientWidth;;
+							                    canvas.height = pdfContainer.clientHeight;
+							                    canvas.width = pdfContainer.clientWidth;
 							
 							                    page.render({
 							                        canvasContext: ctx,
