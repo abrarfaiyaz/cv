@@ -1662,3 +1662,26 @@ input, select, textarea {
 		body.is-preload #footer {
 			opacity: 0;
 		}
+
+/* About */
+
+  .container {
+    display: flex;
+  }
+
+  .photo {
+    /* Styles for the photo */
+    flex: 1;
+  }
+
+  .description {
+    /* Styles for the description */
+    flex: 1;
+  }
+
+  /* Media Query for mobile screens */
+  @media screen and (max-width: 767px) {
+    .container {
+      flex-direction: column;
+    }
+  }
