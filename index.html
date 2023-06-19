@@ -93,61 +93,6 @@
 
 							</div>
 							
-									
-							    <!-- <div id="pdf-container" style="max-width: 100%; overflow-x: auto;justify-content: center; background-color: white;">
-							        <div id="pdf-loader">Loading PDF...</div>
-							        <div id="pdf-contents"></div>
-							    </div>
-							    <script src="pdf-viewer/build/pdf.js"></script>
-							    <script>
-							        const pdfContainer = document.getElementById('pdf-container');
-							        const pdfLoader = document.getElementById('pdf-loader');
-							        const pdfContents = document.getElementById('pdf-contents');
-							        const pdfURL = 'pdf-viewer/resume.pdf'; // Update the path to your PDF file
-							
-							        pdfLoader.style.display = 'block';
-							
-							        // Load and render the PDF
-							        pdfjsLib.getDocument(pdfURL).promise.then(function (pdfDoc) {
-							            pdfLoader.style.display = 'none';
-							
-							            const renderOptions = {
-							                // Adjust the rendering options as needed
-							                imageSmoothingEnabled: true,
-							                renderInteractiveForms: true,
-							                progressiveRendering: true,
-							                background: 'rgba(0,0,0,0)',
-							            };
-							
-							            const renderPage = function (pageNum) {
-							                pdfDoc.getPage(pageNum).then(function (page) {
-							                    const canvas = document.createElement('canvas');
-							                    const ctx = canvas.getContext('2d');
-							                    const scale = 1; // Increase the scale factor for better quality
-							                    const viewport = page.getViewport({ scale });
-							
-							                    canvas.height = viewport.height;
-							                    canvas.width = viewport.width;
-
-									    const pdfPage = document.createElement('div');
-							                    pdfPage.classList.add('pdf-page');
-							                    pdfPage.appendChild(canvas);
-									    page.render({
-							                        canvasContext: ctx,
-							                        viewport: viewport
-							                    }).promise.then(function () {
-							                        pdfContents.appendChild(pdfPage);
-							                    });
-							                    
-							                });
-							            };
-							
-							            // Render each page of the PDF
-							            for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
-							                renderPage(pageNum);
-							            }
-							        });
-							    </script> -->
 							</article>
 
 
@@ -163,12 +108,16 @@
 								</div>
 
 								<div width="100%" >
-									Receiving OIC Gold medal in October, 2016 for academic excellence
+									Receiving <a href="https://www.oic-oci.org/home/?lan=en" >OIC</a> Gold medal in October, 2016 for academic excellence from the Honorable Education Minister of Bangladesh, Mr Nurul Islam Nahid-
 									<span class="image main" style="opacity: 1.0;" ><img src="images/OIC_gold_medal.jpg" alt="" /></span>
 								
 								</div>
 									
-
+								<div class="cv-formatting-mobile">
+								
+									<iframe src="assets/files/ismrm_ai.pdf" width="100%" height="1500"></iframe>
+	
+								</div>
 								
 								<!--<p><iframe src="assets/files/resume.pdf" width="100%" height="100%" ></iframe></p>-->
 								<!--<span class="image main"><img src="images/pic03.jpg" alt="" /></span>
