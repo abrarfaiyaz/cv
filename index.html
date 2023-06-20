@@ -64,8 +64,48 @@
 							<article id="work">
 								<h2 class="major">Work</h2>
 								<span class="image main"><img src="images/bg2.jpg" alt="" /></span>
-								<p>Adipiscing magna sed dolor elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices.</p>
-								<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet feugiat tempus.</p>
+
+								<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+								<script>
+									$(document).ready(function() {
+									var url = "https://api.scraperapi.com/?api_key=45ef5ad1da7edb171a96048f9b2d3e59&url=https://scholar.google.com/citations?user=JhKTS5wAAAAJ&hl=en&oi=ao";
+
+									// Make a request to retrieve the scholar profile page
+									$.get(url, function(response) {
+										// Extract the citation graph image URL
+										var citationGraphUrl = $(response).find('#gsc_md_hist_b+a img').attr('src');
+										
+										// Display the citation graph image on your website
+										$('#citation-graph').attr('src', citationGraphUrl);
+
+										var publications = $(response).find('.gsc_a_tr');
+
+										// Loop through each publication and extract the relevant information
+										publications.each(function() {
+										var title = $(this).find('.gsc_a_at').text();
+										var authors = $(this).find('.gs_gray').text();
+										var venue = $(this).find('.gs_gray+ .gs_gray').text();
+										var year = $(this).find('.gs_gray+ .gs_gray+ .gs_gray').text();
+
+										// Display the publication information on your website
+										var publicationHtml = '<p><strong>' + title + '</strong><br>';
+										publicationHtml += authors + '<br>';
+										publicationHtml += venue + '<br>';
+										publicationHtml += year + '</p>';
+
+										$('#publications').append(publicationHtml);
+										});
+									});
+									});
+								</script>
+								
+								<div>
+									<img id="citation-graph" src="" alt="Citation Graph">
+								</div>
+
+								<div id="publications">
+									<!-- Publications will be dynamically added here -->
+								</div>
 							</article>
 
 						<!-- About -->
