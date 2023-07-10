@@ -175,9 +175,13 @@
 									iframe.width = '100%';
 									iframe.height = '1500';
 									iframe.onload = function() {
-										// Remove the placeholder and loading indicator once the iframe has loaded
-										resumePlaceholder.remove();
-										loadingIndicator.remove();
+										// Check if elements exist before removing them
+										if (resumePlaceholder && resumePlaceholder.parentNode) {
+											resumePlaceholder.parentNode.removeChild(resumePlaceholder);
+										}
+										if (loadingIndicator && loadingIndicator.parentNode) {
+											loadingIndicator.parentNode.removeChild(loadingIndicator);
+										}
 									};
 									resumePlaceholder.parentNode.insertBefore(iframe, resumePlaceholder);
 								});
