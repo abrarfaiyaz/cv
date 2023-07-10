@@ -1687,18 +1687,18 @@ input, select, textarea {
   }
 
   /* CV formatting for mobile */
-
+/* For original website */
   .cv-formatting-mobile{
 	/* margin: -12rem -8rem 0rem -8rem;
 	transform: scale(0.7); */
-	margin: -0rem -0rem 0rem -0rem;
+	margin: -42rem -40rem 0rem -0rem;
 	transform: scale(0.7);
   }
 
    /* Media Query for mobile screens */
    @media screen and (max-width: 767px) {
     .cv-formatting-mobile{
-		margin: -32rem -20rem 0rem -20rem;
+		margin: -105rem -20rem 0rem -20rem;
 	transform: scale(0.35);
     }
   }
