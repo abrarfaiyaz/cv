@@ -137,19 +137,7 @@
 							
 							</article> -->
 							<!-- <script src="assets/js/pdfDisplay.js"></script> -->
-
-							<article id="cv">
-								<h2 class="major">Curriculum vitae</h2>
-								<!-- Placeholder for lazy loading -->
-								<div class="cv-formatting-mobile" >
-									<div id="resume-placeholder" ></div>
-									<div id="loading-spinner">Loading...</div>
-								</div>
-							</article>
-							
-							  
-							
-							<style>
+<style>
 								.loading-spinner {
 									/* Add CSS styles for your loading spinner here */
 									/* For example, you can use a CSS animation or a background image */
@@ -175,27 +163,17 @@
 								displayPDFAsImages("assets/files/resume.pdf", "resume-placeholder");
 								// checkPDFExists("assets/files/resume.pdf");
 							</script>
-							<!-- <script>
-								// Lazy load the resume.html file
-								window.addEventListener('DOMContentLoaded', function() {
-									var resumePlaceholder = document.getElementById('resume-placeholder');
-									var loadingIndicator = document.getElementById('loading-indicator');
-									var iframe = document.createElement('iframe');
-									iframe.src = 'assets/files/resume.html';
-									iframe.width = '100%';
-									iframe.height = '1500';
-									iframe.onload = function() {
-										// Check if elements exist before removing them
-										if (resumePlaceholder && resumePlaceholder.parentNode) {
-											resumePlaceholder.parentNode.removeChild(resumePlaceholder);
-										}
-										if (loadingIndicator && loadingIndicator.parentNode) {
-											loadingIndicator.parentNode.removeChild(loadingIndicator);
-										}
-									};
-									resumePlaceholder.parentNode.insertBefore(iframe, resumePlaceholder);
-								});
-							</script> -->
+							<article id="cv">
+								<h2 class="major">Curriculum vitae</h2>
+								<!-- Placeholder for lazy loading -->
+								<div class="cv-formatting-mobile" >
+									<div id="resume-placeholder" ></div>
+									<div id="loading-spinner">Loading...</div>
+								</div>
+							</article>
+							
+
+							
 
 						<!-- AWARDS -->
 							<article id="awards">
