@@ -1691,7 +1691,7 @@ input, select, textarea {
   .cv-formatting-mobile{
 	/* margin: -12rem -8rem 0rem -8rem;
 	transform: scale(0.7); */
-	margin: -42rem +40rem 0rem 0rem;
+	margin: -42rem 40rem 0 0;
 	transform: scale(0.7);
   }
 
