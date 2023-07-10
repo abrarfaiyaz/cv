@@ -139,6 +139,7 @@
 								<!-- Placeholder for lazy loading -->
 								<div class="cv-formatting-mobile" >
 									<div id="resume-placeholder" ></div>
+									<div id="loading-indicator">Loading...</div>
 								</div>
 							</article>
 							
@@ -146,13 +147,15 @@
 								// Lazy load the resume.html file
 								window.addEventListener('DOMContentLoaded', function() {
 									var resumePlaceholder = document.getElementById('resume-placeholder');
+									var loadingIndicator = document.getElementById('loading-indicator');
 									var iframe = document.createElement('iframe');
 									iframe.src = 'assets/files/resume.html';
 									iframe.width = '100%';
 									iframe.height = '1500';
 									iframe.onload = function() {
-										// Remove the placeholder once the iframe has loaded
+										// Remove the placeholder and loading indicator once the iframe has loaded
 										resumePlaceholder.remove();
+										loadingIndicator.remove();
 									};
 									resumePlaceholder.parentNode.insertBefore(iframe, resumePlaceholder);
 								});
