@@ -11,6 +11,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+  		<script src="assets/js/pdfDisplay.js"></script>
 	</head>
 	<body class="is-preload">
 
@@ -134,14 +136,18 @@
 							</div>
 							
 							</article> -->
+							<!-- <script src="assets/js/pdfDisplay.js"></script> -->
+
 							<article id="cv">
 								<h2 class="major">Curriculum vitae</h2>
 								<!-- Placeholder for lazy loading -->
 								<div class="cv-formatting-mobile" >
 									<div id="resume-placeholder" ></div>
-									<div id="loading-spinner"></div>
+									<div id="loading-spinner">Loading...</div>
 								</div>
 							</article>
+							
+							  
 							
 							<style>
 								.loading-spinner {
@@ -166,6 +172,10 @@
 								}
 							</style>
 							<script>
+								// displayPDFAsImages("assets/files/resume.pdf", "resume-placeholder");
+								checkPDFExists("resume.pdf");
+							</script>
+							<!-- <script>
 								// Lazy load the resume.html file
 								window.addEventListener('DOMContentLoaded', function() {
 									var resumePlaceholder = document.getElementById('resume-placeholder');
@@ -185,7 +195,7 @@
 									};
 									resumePlaceholder.parentNode.insertBefore(iframe, resumePlaceholder);
 								});
-							</script>
+							</script> -->
 
 						<!-- AWARDS -->
 							<article id="awards">
