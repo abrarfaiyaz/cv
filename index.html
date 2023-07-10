@@ -124,17 +124,39 @@
 
 						<!-- CV -->
 							
-						<article id="cv" >
+						<!-- <article id="cv" >
 							    <h2 class="major">Curriculum vitae</h2>
 								
-									<!-- <embed src="pdf-viewer/resume.pdf" type="application/pdf" style="width: 100%; height: 100%;"> -->
+									////////// comment this out///// embed src="pdf-viewer/resume.pdf" type="application/pdf" style="width: 100%; height: 100%;"> 
 							<div class="cv-formatting-mobile">
 								<iframe src="assets/files/resume.html" width="100%" height="1500"></iframe>
 
 							</div>
 							
+							</article> -->
+							<article id="cv">
+								<h2 class="major">Curriculum vitae</h2>
+								<!-- Placeholder for lazy loading -->
+								<div class="cv-formatting-mobile" >
+									<div id="resume-placeholder" ></div>
+								</div>
 							</article>
-
+							
+							<script>
+								// Lazy load the resume.html file
+								window.addEventListener('DOMContentLoaded', function() {
+									var resumePlaceholder = document.getElementById('resume-placeholder');
+									var iframe = document.createElement('iframe');
+									iframe.src = 'assets/files/resume.html';
+									iframe.width = '100%';
+									iframe.height = '1500';
+									iframe.onload = function() {
+										// Remove the placeholder once the iframe has loaded
+										resumePlaceholder.remove();
+									};
+									resumePlaceholder.parentNode.insertBefore(iframe, resumePlaceholder);
+								});
+							</script>
 
 						<!-- AWARDS -->
 							<article id="awards">
