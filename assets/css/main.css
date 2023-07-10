@@ -1702,3 +1702,20 @@ input, select, textarea {
 	transform: scale(0.35);
     }
   }
+
+   /* CV formatting for mobile */
+/* For original website */
+.award-formatting-mobile{
+	/* margin: -12rem -8rem 0rem -8rem;
+	transform: scale(0.7); */
+	margin: -42rem 40rem 0 0;
+	transform: scale(0.7);
+  }
+
+   /* Media Query for mobile screens */
+   @media screen and (max-width: 767px) {
+    .award-formatting-mobile{
+		margin: -105rem -20rem 0rem -20rem;
+	transform: scale(0.35);
+    }
+  }
