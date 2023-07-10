@@ -1689,7 +1689,9 @@ input, select, textarea {
   /* CV formatting for mobile */
 
   .cv-formatting-mobile{
-	margin: -12rem -8rem 0rem -8rem;
+	/* margin: -12rem -8rem 0rem -8rem;
+	transform: scale(0.7); */
+	margin: -0rem -0rem 0rem -0rem;
 	transform: scale(0.7);
   }
 
