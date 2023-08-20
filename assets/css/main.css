@@ -1728,6 +1728,7 @@ input, select, textarea {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-align: left;
 }
 
 #timeline-css body {
@@ -1873,6 +1874,9 @@ input, select, textarea {
 }
 
 @media (min-width: 40rem) {
+  #timeline-css *{
+		text-align: center;
+	}
   #timeline-css ul {
     grid-template-columns: 1fr var(--line-w) 1fr;
   }
