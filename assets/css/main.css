@@ -1749,8 +1749,8 @@ input, select, textarea {
 }
 
 #timeline-css ul {
-  --col-gap: 2rem;
-  --row-gap: 2rem;
+  --col-gap: 1rem;
+  --row-gap: 1rem;
   --line-w: 0.25rem;
   display: grid;
   grid-template-columns: var(--line-w) 1fr;
