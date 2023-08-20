@@ -1852,15 +1852,15 @@ input, select, textarea {
 /* shadows */
 #timeline-css ul li .title::before,
 #timeline-css ul li .descr::before {
-  content: "";
+  /* content: "";
   position: absolute;
   width: 90%;
   height: 0.5rem;
   background: rgba(0, 0, 0, 0.5);
-  left: 50%;
-  border-radius: 50%;
-  filter: blur(4px);
-  transform: translate(-50%, 50%);
+  left: 50%; */
+  /* border-radius: 50%; */
+  /* filter: blur(4px); */
+  /* transform: translate(-50%, 50%); */
 }
 
 #timeline-css ul li .title::before {
