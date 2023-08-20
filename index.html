@@ -151,45 +151,91 @@
 						<!-- About -->
 							<article id="about">
 								<h2 class="major">About</h2>
-								<div class="container">
-									  <span class="photo">
-									    <img src="images/faiyaz_abrar_full.jpg" style="float: top; margin-left: 10px;margin-right: 10px;" width="150" alt="" />
-									  </span>
+								<style>
+									.photo2 {
+									position: absolute; /*Position the image absolutely within its container */
+									/* top: 10px; Place the image at the top of the container */
+									margin-left: 10px; /* Place the image at the left of the container */
+									margin-right: 10px;
+									width: 75%;
+									transition: opacity 0.5s; /* Smooth opacity transition */
+									}
+									.hidden {
+									opacity: 0; /* Make the image invisible */
+									pointer-events: none; /* Make sure the image does not interfere with clicks */
+									}
+
+									/* Placeholder div to maintain layout */
+									.next-element {
+									margin-top: 10px; /* Add some space between the image and the next element */
+									opacity: 0; /* Initially set the opacity of the next element to 0 */
+									transition: opacity 0.5s; /* Smooth opacity transition */
+									}
+
+									.show-next {
+									opacity: 1; /* Show the next element when the image disappears */
+									}
+								  </style>
+
+								<div class="photo2">
+									<img src="images/faiyaz_abrar_full.jpg" style=" margin-left: 10px;margin-right: 10px;" width="100%" alt="" />
+								</div>
+								  <!-- <div class="next-element"></div> -->
+								  
+								<div class="next-element">
+									  
+									
 									  <!-- <span class="description">
 									    Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices. Aliquam libero et malesuada fames ac ante ipsum primis in faucibus. Cras viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit amet.
 									  </span> -->
 									 <div id="timeline-css">
 										<ul>
 											<li style="--accent-color:#41516C">
-												<div class="date">2023/24</div>
+												<div class="date">May, 2024</div>
 						
-												<div class="title">Title1</div>
+												<div class="title">PhD Candidate in the Department of Electrical and Computer Engineering</div>
 												
-												<img src="images/logo_Bee.svg" style="float: top; margin-left: 10px;margin-right: 10px;opacity: 0.75;" width="80%" alt="" />
-												<div class="descr"> Lorem Ipsum blah blah </div>
+												<!--<img src="images/logo_Bee.svg" style="float: top; margin-left: 10px;margin-right: 10px;opacity: 0.75;" width="80%" alt="" /> -->
+												<div class="descr"> On track and expected to receive PhD commencement on May, 2024 </div>
 											</li>
 											<li style="--accent-color:#808080">  <!-- #FBCA3E -->
-												<div class="date">2020</div>
-												<div class="title">Title 2</div>
-												<div class="descr">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos adipisci nobis nostrum vero nihil veniam.</div>
+												<div class="date">May, 2020</div>
+												<div class="title">Completed MSc from the Department of Electrical and Computer Engineering</div>
+												<div class="descr"> Footnote: As COVID hit hard, the commencement had to be delayed till May, 2022 even though MSc requirements were completed in 2020.</div>
 											</li>
 											<li style="--accent-color:#6B5443 "> <!-- #E24A68 -->
-												<div class="date">2012</div>
-												<div class="title">Title 3</div>
-												<div class="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga minima consequuntur soluta placeat iure totam commodi repellendus ea delectus, libero fugit quod reprehenderit, sequi quo, et dolorum saepe nulla hic.</div>
+												<div class="date">January, 2018</div>
+												<div class="title">Joined as Research and Teaching Assistant in the University of Rochester </div>
+												<div class="descr">I was thrilled to join the PhD opportunity from MIRG Lab and fellowship offered from the University of Rochester. I looked forward to the beginning of my research career.</div>
 											</li>
 											<li style="--accent-color:#41516C">
-												<div class="date">2021</div>
-												<div class="title">Title 4</div>
-												
+												<div class="date">January, 2017</div>
+												<div class="title">Lecturer in the Department of Computer Science and Engineering, IUT</div>
 												<!-- <img src="images/meliora_logo.png" style="float: top; margin-left: 10px;margin-right: 10px;opacity: 0.75;" width="100%" alt="" /> -->
-												<div class="descr">Lorem Ipsum Blah blah </div>
+												<div class="descr"> 
+													<p>After successfully attaining my Bachelor's degree and completing an internship, I was presented with a valuable opportunity to serve as a Lecturer, allowing me to impart my knowledge. During my tenure at IUT, I had the privilege of instructing the following courses:</p>
+													<dl>
+														<dt>CSE4503</dt>
+														<dd>Microprocessor And Assembly Language</dd>
+														
+														<dt>CSE4673</dt>
+														<dd>Operating Systems and Systems Programming</dd>
+														
+														<dt>CSE4607</dt>
+														<dd>Computer Graphics and Multimedia Systems</dd>
+														
+														<dt>CSE4885</dt>
+														<dd>Human-Computer Interaction</dd>
+													  </dl>
+
+												</div>
 											</li>
 											<li style="--accent-color:#808080">  <!-- #FBCA3E -->
-												<div class="date">2020</div>
-												<div class="title">Title 2</div>
-												<div class="descr">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos adipisci nobis nostrum vero nihil veniam.</div>
-											</li>
+												<div class="date">October, 2016</div>
+												<div class="title">Received OIC Gold Medal 2016 for Academic Excellence</div>
+												<!-- <img src="images/meliora_logo.png" style="float: top; margin-left: 10px;margin-right: 10px;opacity: 0.75;" width="100%" alt="" /> -->
+												<div class="descr">The Islamic University of Technology, established under the auspices of the Organization of Islamic Cooperation (OIC), is an institution celebrated for its diversity. On an annual basis, during the commencement ceremony, the university presents the prestigious OIC Gold Medal. This medal recognizes exceptional academic achievement among students, and it is awarded to a single outstanding individual across all accredited departments, including Computer Science and Engineering (CSE), Electrical and Electronic Engineering (EEE), Mechanical and Chemical Engineering (MCE), and Technical and Vocational Education (TVE)
+												</div>											</li>
 											<li style="--accent-color:#6B5443 "> <!-- #E24A68 -->
 												<div class="date">2012</div>
 												<div class="title">Title 3</div>
@@ -200,7 +246,24 @@
 									
 									<!-- <div class="credits"><a target="_blank" href="https://www.freepik.com/free-vector/infographic-template-with-yearly-info_1252895.htm">inspired by</a></div> -->
 								</div>
-
+								<script>
+									window.addEventListener("scroll", function() {
+									  var photo = document.querySelector(".photo2");
+									  var nextElement = document.querySelector(".next-element");
+									  var scrollPosition = window.scrollY;
+								
+									  // Define the point at which you want the image to disappear
+									  var threshold = 20; // Adjust as needed
+								
+									  if (scrollPosition > threshold) {
+										photo.classList.add("hidden");
+										nextElement.classList.add("show-next");
+									  } else {
+										photo.classList.remove("hidden");
+										nextElement.classList.remove("show-next");
+									  }
+									});
+								  </script>
 							</article>
 
 						<!-- CV -->
