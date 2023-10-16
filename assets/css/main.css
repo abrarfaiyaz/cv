@@ -1691,14 +1691,14 @@ input, select, textarea {
   .cv-formatting-mobile{
 	/* margin: -12rem -8rem 0rem -8rem;
 	transform: scale(0.7); */
-	margin: -25rem 40rem 0 0;
+	/* margin: -25rem 40rem 0 0;*/
 	transform: scale(0.7);
   }
 
    /* Media Query for mobile screens */
    @media screen and (max-width: 767px) {
     .cv-formatting-mobile{
-		margin: -55rem -20rem 0rem -20rem;
+		/* margin: -55rem -20rem 0rem -20rem;*/
 	transform: scale(0.35);
     }
   }
