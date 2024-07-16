@@ -43,7 +43,12 @@
   		<script src="assets/js/pdfDisplay.js"></script>
 	</head>
 	<body class="is-preload">
+<!-- Loader HTML -->
+    <div id="loader"></div>
 
+
+
+ 
 		<!-- Wrapper -->
 			<div id="wrapper">
 
@@ -75,7 +80,14 @@
 						</nav>
 					</header>
 					<link rel="stylesheet" href="assets/css/main_defer.css" />
-				<!-- Main -->
+				
+                                   <script>
+        // JavaScript to hide the loader once the page has fully loaded
+        window.addEventListener('load', function () {
+            document.body.classList.add('loaded');
+        });
+    </script>
+                                <!-- Main -->
 					<div id="main">
 
 						<!-- Intro -->
