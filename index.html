@@ -10,7 +10,7 @@
 		<meta name="google-site-verification" content="U-_IVo3-bAL2FWNDRG-EwcPpPB2KfXUdlreBSx8Mjn0" />
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<style>
+		<!--<style>
         /* Loader styles */
         #loader {
             position: fixed;
@@ -35,8 +35,36 @@
         body.loaded #loader {
             display: none;
         }
+    </style>-->
+<style>
+        /* Loader styles */
+        #loader {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 4px;
+            background: #ffffff;
+            animation: move 1s ease-in-out infinite;
+            z-index: 9999;
+        }
+
+        @keyframes move {
+            0%, 100% {
+                transform: translateX(-50px);
+            }
+            50% {
+                transform: translateX(50px);
+            }
+        }
+
+        /* Hide the loader when the page is loaded */
+        body.loaded #loader {
+            display: none;
+        }
     </style>
-		<link rel="stylesheet" href="assets/css/main.css" />
+		
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
@@ -79,6 +107,7 @@
 							</ul>
 						</nav>
 					</header>
+                                        <link rel="stylesheet" href="assets/css/main.css" />
 					<link rel="stylesheet" href="assets/css/main_defer.css" />
 				
                                    <script>
