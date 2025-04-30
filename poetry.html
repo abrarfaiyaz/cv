@@ -1,43 +1,4 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -85,13 +46,16 @@
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
     h2 {
+      font-family: 'Dancing Script', cursive;
       color: #ffffff;
+      font-size: 2rem;
     }
     .poem-text {
       color: #e2e8f0;
       position: relative;
       overflow: hidden;
       transition: max-height 0.5s ease;
+      white-space: pre-wrap; /* Preserve spaces and line breaks */
     }
     .poem-text.short {
       max-height: 6rem;
@@ -207,7 +171,6 @@
       let poemIndex = 1;
       let hasPoems = false;
 
-      // Fetch poems until a file is not found
       while (true) {
         const response = await fetch(`assets/poem/poem-${poemIndex}.txt`).catch(() => null);
         if (!response || !response.ok) {
@@ -215,20 +178,34 @@
         }
 
         const text = await response.text();
-        const lines = text.trim().split('\n').map(line => line.trim()).filter(line => line.length > 0);
+        const lines = text.split('\n').map(line => line.replace('\r', '')); // Handle CR/LF
         if (lines.length === 0) {
           poemIndex++;
           continue; // Skip empty files
         }
 
-        hasPoems = true;
-        const poemHtml = lines.join('<br>');
+        // Extract title from first line if it matches [Title] format
+        let title = `Poem ${poemIndex}`;
+        let startIndex = 0;
+        if (lines[0].match(/^\[.*\]$/)) {
+          title = lines[0].slice(1, -1); // Remove brackets
+          startIndex = 1;
+        }
 
+        // Process poem content, preserving spaces and line breaks
+        const poemLines = lines.slice(startIndex).filter(line => line.trim().length > 0);
+        if (poemLines.length === 0) {
+          poemIndex++;
+          continue; // Skip if no content after title
+        }
+        const poemHtml = poemLines.map(line => line.replace(/ /g, '&nbsp;')).join('<br>');
+
+        hasPoems = true;
         const poemDiv = document.createElement('div');
         poemDiv.className = 'poem-container rounded-lg p-8 mb-8';
         poemDiv.onclick = () => togglePoem(poemDiv);
         poemDiv.innerHTML = `
-          <h2 class="text-2xl font-semibold mb-4">Poem ${poemIndex}</h2>
+          <h2 class="text-2xl font-semibold mb-4">${title}</h2>
           <div class="poem-text short">
             <p class="leading-relaxed">${poemHtml}</p>
             <div class="fade"></div>
