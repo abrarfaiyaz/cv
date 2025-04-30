@@ -209,7 +209,7 @@
 
       // Fetch poems until a file is not found
       while (true) {
-        const response = await fetch(`poem-${poemIndex}.txt`).catch(() => null);
+        const response = await fetch(`assets/poem/poem-${poemIndex}.txt`).catch(() => null);
         if (!response || !response.ok) {
           break; // Exit loop if file doesn't exist or fetch fails
         }
