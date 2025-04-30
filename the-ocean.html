@@ -184,12 +184,18 @@
           continue; // Skip empty files
         }
 
-        // Extract title from first line if it matches [Title] format
+        // Find the first non-empty line for title
         let title = `Poem ${poemIndex}`;
         let startIndex = 0;
-        if (lines[0].match(/^\[.*\]$/)) {
-          title = lines[0].slice(1, -1); // Remove brackets
-          startIndex = 1;
+        for (let i = 0; i < lines.length; i++) {
+          const trimmedLine = lines[i].trim();
+          if (trimmedLine.length > 0) {
+            if (trimmedLine.match(/^\[.*\]$/)) {
+              title = trimmedLine.slice(1, -1); // Remove brackets
+              startIndex = i + 1;
+            }
+            break;
+          }
         }
 
         // Process poem content, preserving spaces and line breaks
@@ -198,7 +204,7 @@
           poemIndex++;
           continue; // Skip if no content after title
         }
-        const poemHtml = poemLines.map(line => line.replace(/ /g, '&nbsp;')).join('<br>');
+        const poemHtml = poemLines.map(line => line.replace(/ /g, ' ')).join('<br>');
 
         hasPoems = true;
         const poemDiv = document.createElement('div');
