@@ -5,31 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Research Blog | Abrar Faiyaz, PhD</title>
     <style>
-        /* --- CSS Variables & Theme --- */
+        @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;1,300&display=swap');
+
+        /* --- CSS Variables matched to the "Dimension" Dark Theme --- */
         :root {
-            --bg-main: #ffffff;
-            --sidebar-bg: #f8fafc;
-            --text-main: #334155;
-            --text-heading: #0f172a;
-            --text-muted: #64748b;
-            --accent: #0366d6;
-            --accent-hover: #0056b3;
-            --border: #e2e8f0;
-            --sidebar-width: 280px;
+            --bg-main: #111316; 
+            --bg-sidebar: rgba(17, 19, 22, 0.85);
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-card-hover: rgba(255, 255, 255, 0.06);
+            --text-main: rgba(255, 255, 255, 0.65);
+            --text-heading: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.45);
+            --border: rgba(255, 255, 255, 0.15);
+            --border-hover: rgba(255, 255, 255, 0.35);
+            --sidebar-width: 320px;
             --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.7;
+            font-family: 'Source Sans Pro', Helvetica, sans-serif;
+            font-weight: 300;
+            line-height: 2;
             color: var(--text-main);
             background-color: var(--bg-main);
+            background-image: radial-gradient(circle at top right, #1a1d24, #0d0f12);
+            background-attachment: fixed;
             display: flex;
             min-height: 100vh;
             overflow-x: hidden;
@@ -37,240 +39,111 @@
 
         /* --- Sidebar Navigation --- */
         .sidebar {
-            width: var(--sidebar-width);
-            background-color: var(--sidebar-bg);
-            border-right: 1px solid var(--border);
-            position: fixed;
-            height: 100vh;
-            padding: 2.5rem 2rem;
-            display: flex;
-            flex-direction: column;
-            z-index: 100;
+            width: var(--sidebar-width); background-color: var(--bg-sidebar); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border-right: 1px solid var(--border); position: fixed; height: 100vh; padding: 3.5rem 2.5rem; z-index: 100;
         }
 
-        .profile-container {
-            text-align: center;
-            margin-bottom: 2.5rem;
+        .profile-name { font-size: 1.25rem; color: var(--text-heading); font-weight: 600; text-align: center; text-transform: uppercase; letter-spacing: 0.15rem; }
+        .profile-title { font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-bottom: 3rem; letter-spacing: 0.1rem; }
+        
+        .nav-links { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+        .nav-links a { 
+            text-decoration: none; color: var(--text-main); font-weight: 400; display: flex; align-items: center; 
+            padding: 0.75rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.1rem; font-size: 0.85rem; 
+            transition: all 0.2s ease; border: 1px solid transparent;
         }
-
-        .profile-name {
-            font-size: 1.25rem;
-            color: var(--text-heading);
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-        }
-
-        .profile-title {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-main);
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            padding: 0.5rem;
-            border-radius: 6px;
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            background-color: #e2e8f0;
-            color: var(--accent);
-        }
-
-        .nav-links svg { width: 18px; height: 18px; margin-right: 12px; }
+        .nav-links a:hover, .nav-links a.active { color: var(--text-heading); border-color: var(--border-hover); background-color: rgba(255, 255, 255, 0.02); }
+        .nav-links svg { width: 16px; height: 16px; margin-right: 15px; }
 
         /* --- Mobile Header --- */
         .mobile-header {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            height: 60px;
-            background: var(--bg-main);
-            border-bottom: 1px solid var(--border);
-            z-index: 101;
-            align-items: center;
-            padding: 0 1.5rem;
-            justify-content: space-between;
+            display: none; position: fixed; top: 0; left: 0; right: 0; height: 60px;
+            background: var(--bg-sidebar); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+            z-index: 101; align-items: center; padding: 0 1.5rem; justify-content: space-between;
         }
-
-        .menu-btn {
-            background: none; border: none; cursor: pointer; color: var(--text-heading);
-        }
+        .menu-btn { background: none; border: none; cursor: pointer; color: var(--text-heading); }
 
         /* --- Main Content Area --- */
-        .main-content {
-            flex: 1;
-            margin-left: var(--sidebar-width);
-            padding: 4rem 3rem;
-            max-width: 1000px;
-        }
-
-        .page-header {
-            margin-bottom: 3rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 2px solid var(--border);
-        }
-
-        .page-header h1 {
-            font-size: 2.5rem;
-            color: var(--text-heading);
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.02em;
-        }
+        .main-content { flex: 1; margin-left: var(--sidebar-width); padding: 5rem 4rem; max-width: 1100px; }
+        .page-header { margin-bottom: 3rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+        .page-header h1 { font-size: 2.25rem; color: var(--text-heading); letter-spacing: 0.2rem; text-transform: uppercase; font-weight: 600; margin-bottom: 0.5rem; }
 
         /* --- Collapsible Accordion Cards --- */
-        .post-card {
-            background: var(--bg-main);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            overflow: hidden;
-            transition: var(--transition);
-        }
+        .post-card { background: var(--bg-card); border: 1px solid var(--border); margin-bottom: 1.5rem; transition: var(--transition); }
+        .post-card:hover { border-color: var(--border-hover); background: var(--bg-card-hover); }
+        .post-header { padding: 2rem 2.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background-color 0.3s ease; }
+        .post-title-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .post-title { font-size: 1.4rem; font-weight: 600; color: var(--text-heading); margin: 0; letter-spacing: 0.1rem; text-transform: uppercase; }
+        .post-meta { font-size: 0.85rem; color: var(--text-muted); display: flex; align-items: center; gap: 15px; text-transform: uppercase; letter-spacing: 0.1rem; }
+        .expand-icon { width: 24px; height: 24px; color: var(--text-muted); transition: transform 0.4s ease; }
 
-        .post-card:hover {
-            border-color: #cbd5e1;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
+        /* Animation Logic */
+        .post-content-wrapper { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .post-content-inner { overflow: hidden; padding: 0 2.5rem; opacity: 0; transition: opacity 0.4s ease, padding 0.4s ease; }
 
-        .post-header {
-            padding: 1.5rem 2rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: var(--bg-main);
-            transition: background-color 0.3s ease;
-        }
+        .post-card.active { border-color: var(--border-hover); background: rgba(0,0,0,0.2); }
+        .post-card.active .post-content-wrapper { grid-template-rows: 1fr; }
+        .post-card.active .post-content-inner { padding: 0 2.5rem 2.5rem 2.5rem; opacity: 1; }
+        .post-card.active .expand-icon { transform: rotate(180deg); color: var(--text-heading); }
+        .post-card.active .post-header { border-bottom: 1px solid var(--border); background: transparent; }
 
-        .post-header:hover {
-            background-color: var(--sidebar-bg);
-        }
+        /* --- Injected Content Global Styling --- */
+        .post-content-inner h2 { font-size: 1.4rem; color: var(--text-heading); margin: 3.5rem 0 1.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+        .post-content-inner h3 { font-size: 1.1rem; color: var(--text-heading); margin: 2rem 0 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1rem; }
+        .post-content-inner p { margin-bottom: 1.5rem; font-size: 1.05rem; }
+        .loading-text { color: var(--text-muted); font-style: italic; padding: 3rem 0; text-align: center; letter-spacing: 0.1rem; }
 
-        .post-title-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
+        /* Callouts & Cards inside injected HTML */
+        .post-content-inner .callout, .post-content-inner .highlight-box { background-color: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--text-heading); padding: 1.5rem 2rem; margin: 2.5rem 0; }
+        .post-content-inner .highlight-box { border-left-color: var(--text-muted); font-style: italic; }
+        .post-content-inner .structure-container { display: flex; flex-direction: column; gap: 3rem; margin: 3rem 0; }
+        .post-content-inner .structure-card { display: flex; flex-direction: column; border: 1px solid var(--border); background: var(--bg-card); }
+        @media (min-width: 850px) {
+            .post-content-inner .structure-card { flex-direction: row; }
+            .post-content-inner .structure-outline { width: 40%; border-right: 1px solid var(--border); border-bottom: none; }
+            .post-content-inner .structure-details { width: 60%; }
         }
-
-        .post-title {
-            font-size: 1.35rem;
-            font-weight: 600;
-            color: var(--text-heading);
-            margin: 0;
-        }
-
-        .post-meta {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .expand-icon {
-            width: 24px;
-            height: 24px;
-            color: var(--text-muted);
-            transition: transform 0.4s ease;
-        }
-
-        /* The Grid-Row trick for smooth height animation */
-        .post-content-wrapper {
-            display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .post-content-inner {
-            overflow: hidden;
-            padding: 0 2rem;
-            opacity: 0;
-            transition: opacity 0.4s ease, padding 0.4s ease;
-        }
-
-        /* Active State Classes */
-        .post-card.active .post-content-wrapper {
-            grid-template-rows: 1fr;
-        }
-
-        .post-card.active .post-content-inner {
-            padding: 0 2rem 2rem 2rem;
-            opacity: 1;
-        }
-
-        .post-card.active .expand-icon {
-            transform: rotate(180deg);
-            color: var(--accent);
-        }
-
-        .post-card.active .post-header {
-            border-bottom: 1px solid var(--border);
-        }
-
-        /* --- Injected Content Styling (To match the blog) --- */
-        .post-content-inner h2 {
-            font-size: 1.6rem;
-            margin: 2.5rem 0 1rem;
-            color: var(--text-heading);
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 0.5rem;
-        }
-        .post-content-inner p { margin-bottom: 1.25rem; }
-        .post-content-inner ul { margin-bottom: 1.25rem; padding-left: 1.5rem; }
-        .post-content-inner li { margin-bottom: 0.5rem; }
+        .post-content-inner .structure-outline { padding: 2.5rem; border-bottom: 1px solid var(--border); }
+        .post-content-inner .structure-details { padding: 2.5rem; display: flex; flex-direction: column; justify-content: flex-start; }
+        .post-content-inner .tag { display: inline-block; border: 1px solid var(--border); color: var(--text-heading); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15rem; padding: 0.25rem 0.75rem; margin-bottom: 1.5rem; align-self: flex-start; }
         
-        .loading-text {
-            color: var(--text-muted);
-            font-style: italic;
-            padding: 2rem 0;
-            text-align: center;
-        }
+        /* Lists */
+        .post-content-inner .structure-outline ul, .post-content-inner .custom-list { list-style: none; padding-left: 0; margin-bottom: 0; }
+        .post-content-inner .structure-outline ul li { position: relative; padding-left: 1.5rem; margin-bottom: 0.25rem; font-size: 0.95rem; color: var(--text-heading); }
+        .post-content-inner .structure-outline ul li::before { content: ''; position: absolute; left: 0; top: 14px; width: 8px; height: 1px; background: var(--text-muted); }
+        .post-content-inner .structure-outline ul ul { margin-top: 0.25rem; margin-bottom: 0.75rem; }
+        .post-content-inner .structure-outline ul ul li { color: var(--text-main); font-size: 0.9rem; padding-left: 2.5rem; }
+        .post-content-inner .structure-outline ul ul li::before { left: 1rem; width: 6px; }
+        .post-content-inner .custom-list li { position: relative; padding-left: 1.5rem; margin-bottom: 0.75rem; font-size: 1.05rem; color: var(--text-main); }
+        .post-content-inner .custom-list li::before { content: '>'; position: absolute; left: 0; top: 0; color: var(--text-heading); font-weight: 600; width: auto; height: auto; background: transparent; }
 
-        /* --- Responsive --- */
+        /* Responsive Mobile */
         @media (max-width: 768px) {
             .mobile-header { display: flex; }
             .sidebar { transform: translateX(-100%); padding-top: 80px; transition: transform 0.3s ease; }
             .sidebar.open { transform: translateX(0); }
             .main-content { margin-left: 0; padding: 6rem 1.5rem 3rem; }
-            .post-header { padding: 1.25rem; flex-direction: column; align-items: flex-start; gap: 1rem; position: relative;}
-            .expand-icon { position: absolute; right: 1.25rem; top: 1.25rem; }
-            .post-content-inner { padding: 0 1.25rem; }
-            .post-card.active .post-content-inner { padding: 0 1.25rem 1.5rem 1.25rem; }
+            .post-header { padding: 1.5rem; flex-direction: column; align-items: flex-start; gap: 1rem; position: relative;}
+            .expand-icon { position: absolute; right: 1.5rem; top: 1.5rem; }
+            .post-content-inner { padding: 0 1.5rem; }
+            .post-card.active .post-content-inner { padding: 0 1.5rem 1.5rem 1.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Mobile Header -->
     <div class="mobile-header">
-        <div style="font-weight: 700; color: var(--text-heading);">Abrar Faiyaz, PhD</div>
+        <div style="font-weight: 600; color: var(--text-heading); text-transform: uppercase; letter-spacing: 0.1rem; font-size: 0.9rem;">Abrar Faiyaz, PhD</div>
         <button class="menu-btn" id="menuToggle">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
         </button>
     </div>
 
-    <!-- Sidebar Navigation -->
     <aside class="sidebar" id="sidebar">
-        <div class="profile-container">
-            <div class="profile-name">Abrar Faiyaz</div>
-            <div class="profile-title">Ph.D. Researcher</div>
-        </div>
+        <div class="profile-name">Abrar Faiyaz</div>
+        <div class="profile-title">Ph.D. Researcher</div>
         <nav>
             <ul class="nav-links">
-                <!-- Change href to your actual CV root -->
                 <li><a href="https://abrarfaiyaz.github.io/cv/">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
                     Home / CV
@@ -283,131 +156,130 @@
         </nav>
     </aside>
 
-    <!-- Main Content -->
     <main class="main-content">
         <div class="page-header">
-            <h1>Research & Writing Log</h1>
-            <p style="color: var(--text-muted); font-size: 1.1rem;">Click on any post below to expand and read the full article without leaving this page.</p>
+            <h1>Research Log</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem;">Click on any post to expand and read.</p>
         </div>
 
-        <!-- The container where all blogs will be dynamically injected -->
-        <div id="blog-container">
-            <!-- Content will be populated by JavaScript -->
-        </div>
+        <div id="blog-container"></div>
     </main>
 
-    <!-- Interactive Logic -->
     <script>
-        // 1. Define your blog posts here. 
-        // When you write a new blog, just add it to this list!
-        const blogPosts = [
-            {
-                id: "post-1",
-                fileUrl: "blogposts/blog-1.html", // Path to the HTML file you created earlier
-                title: "The Architecture of a STEM Ph.D. Thesis",
-                date: "30 March, 2026",
-                readTime: "6 min read"
-            },
-            // Example of how to add your next post:
-            // {
-            //     id: "post-2",
-            //     fileUrl: "blogposts/blog-2.html", 
-            //     title: "Defending Your Dissertation Successfully",
-            //     date: "15 April, 2026",
-            //     readTime: "4 min read"
-            // }
-        ];
+        // Global object to store the pre-loaded HTML content
+        const preloadedArticles = {};
 
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            // --- Mobile Menu Logic ---
-            const menuBtn = document.getElementById('menuToggle');
-            const sidebar = document.getElementById('sidebar');
-            menuBtn.addEventListener('click', () => sidebar.classList.toggle('open'));
-
-            // --- Blog Loading Logic ---
-            const container = document.getElementById('blog-container');
-
-            // Generate the collapsed cards immediately
-            blogPosts.forEach(post => {
-                const card = document.createElement('div');
-                card.className = 'post-card';
-                card.id = post.id;
-                
-                card.innerHTML = `
-                    <div class="post-header" onclick="togglePost('${post.id}', '${post.fileUrl}')">
-                        <div class="post-title-group">
-                            <h2 class="post-title">${post.title}</h2>
-                            <div class="post-meta">
-                                <span>${post.date}</span> &bull; <span>${post.readTime}</span>
-                            </div>
-                        </div>
-                        <svg class="expand-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </div>
-                    <div class="post-content-wrapper">
-                        <div class="post-content-inner" id="content-${post.id}">
-                            <div class="loading-text">Loading article content...</div>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
+        // Mobile Sidebar Logic
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.toggle('open');
         });
 
-        // Function to toggle the accordion and fetch content if not already loaded
-        async function togglePost(postId, fileUrl) {
-            const card = document.getElementById(postId);
-            const contentInner = document.getElementById(`content-${postId}`);
+        // The Auto-Discovery Function
+        async function discoverAndLoadBlogs() {
+            const container = document.getElementById('blog-container');
+            container.innerHTML = '<div class="loading-text">Scanning directory for research logs...</div>';
             
-            // Toggle the 'active' class which triggers the CSS height animation
-            card.classList.toggle('active');
+            let index = 1;
+            let keepLooking = true;
+            let cardsHTML = '';
 
-            // If we've already loaded the content, we don't need to fetch it again
-            if (card.dataset.loaded === "true") return;
+            while (keepLooking) {
+                const postId = `post-${index}`;
+                const fileUrl = `blogposts/blog-${index}.html`;
 
-            try {
-                // Fetch the HTML file
-                const response = await fetch(fileUrl);
-                if (!response.ok) throw new Error("File not found");
-                
-                const htmlText = await response.text();
-                
-                // Parse the fetched HTML text into a virtual DOM
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(htmlText, 'text/html');
-                
-                // CRITICAL STEP: We only extract the <section> tags or <article> content from the fetched file.
-                // We do NOT want to bring in the sidebar, html, head, or body tags from blog-1.html.
-                const articleContent = doc.querySelector('article');
-                
-                if (articleContent) {
-                    // Remove the header from the fetched content since our accordion already shows the title and date
-                    const innerHeader = articleContent.querySelector('header');
-                    if (innerHeader) innerHeader.remove();
-                    
-                    // Also remove the "Back to CV" button from the fetched file, as it looks weird inside an accordion
-                    const backBtn = articleContent.querySelector('.btn');
-                    if(backBtn) backBtn.parentElement.remove();
+                try {
+                    const response = await fetch(fileUrl);
 
-                    // Inject the clean content into the accordion body
-                    contentInner.innerHTML = articleContent.innerHTML;
-                    
-                    // Mark as loaded so we don't fetch it again when closing/re-opening
-                    card.dataset.loaded = "true";
-                } else {
-                    contentInner.innerHTML = `<p style="color: red;">Error: Could not find &lt;article&gt; tag in ${fileUrl}</p>`;
+                    // If we hit a 404 (file doesn't exist), we stop the loop
+                    if (!response.ok) {
+                        keepLooking = false;
+                        break; 
+                    }
+
+                    // If it does exist, we scrape it!
+                    const htmlText = await response.text();
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(htmlText, 'text/html');
+
+                    // 1. Scrape Title
+                    const titleEl = doc.querySelector('article h1');
+                    const title = titleEl ? titleEl.innerText : `Research Log #${index}`;
+
+                    // 2. Scrape Date (Looking for the • divider in our template)
+                    const headerDiv = doc.querySelector('article header div');
+                    let date = "Recent";
+                    if (headerDiv && headerDiv.innerText.includes('•')) {
+                        date = headerDiv.innerText.split('•')[1].trim(); 
+                    }
+
+                    // 3. Pre-load the content so it opens instantly later
+                    const articleContent = doc.querySelector('article');
+                    if (articleContent) {
+                        // Clean up redundant headers/buttons for the accordion view
+                        const innerHeader = articleContent.querySelector('header');
+                        if (innerHeader) innerHeader.remove();
+                        const backBtn = articleContent.querySelector('.btn');
+                        if(backBtn) backBtn.parentElement.remove();
+                        
+                        preloadedArticles[postId] = articleContent.innerHTML;
+                    }
+
+                    // 4. Build the card HTML
+                    cardsHTML += `
+                        <div class="post-card" id="${postId}">
+                            <div class="post-header" onclick="togglePost('${postId}')">
+                                <div class="post-title-group">
+                                    <h2 class="post-title">${title}</h2>
+                                    <div class="post-meta">
+                                        <span>${date}</span>
+                                    </div>
+                                </div>
+                                <svg class="expand-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </div>
+                            <div class="post-content-wrapper">
+                                <div class="post-content-inner" id="content-${postId}">
+                                    ${preloadedArticles[postId] || '<div class="loading-text" style="color:#ef4444;">Error parsing article content.</div>'}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    index++; // Move to check blog-2, then blog-3, etc.
+
+                } catch (error) {
+                    console.error("Discovery stopped due to network error/CORS:", error);
+                    keepLooking = false;
                 }
+            }
 
-            } catch (error) {
-                console.error("Error fetching post:", error);
-                contentInner.innerHTML = `
-                    <p style="color: #ef4444; padding: 2rem 0; text-align: center;">
-                        <strong>Note:</strong> Content cannot be loaded when running the HTML file directly from your computer due to browser security rules (CORS). Please test this by uploading to GitHub Pages or using a Local Server (like VS Code Live Server).
-                    </p>`;
+            // Finally, inject all the discovered cards into the page
+            if (cardsHTML === '') {
+                container.innerHTML = `
+                    <div class="loading-text" style="color:var(--text-heading);">
+                        <strong style="color:#ef4444;">System Warning:</strong> No blog files were discovered.<br><br>
+                        <span style="font-size:0.9rem;">(Ensure your files are named exactly 'blog-1.html', 'blog-2.html', etc., and are placed in the 'blogposts' folder. Note: This script requires a local server or GitHub Pages to run successfully; it will be blocked by CORS if you just double-click the file on your computer.)</span>
+                    </div>`;
+            } else {
+                container.innerHTML = cardsHTML;
             }
         }
+
+        // Toggle function (now ultra-fast because content is preloaded)
+        function togglePost(postId) {
+            const card = document.getElementById(postId);
+            
+            // Optional: Close other open cards (Accordion style)
+            // document.querySelectorAll('.post-card.active').forEach(c => {
+            //    if (c.id !== postId) c.classList.remove('active');
+            // });
+
+            card.classList.toggle('active');
+        }
+
+        // Start the discovery process when the page loads
+        document.addEventListener('DOMContentLoaded', discoverAndLoadBlogs);
     </script>
 </body>
 </html>
